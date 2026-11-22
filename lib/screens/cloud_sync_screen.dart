@@ -151,7 +151,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Encryption turned off?'),
+        title: const Text('已关闭加密？'),
         content: const Text(
           'Only continue if you turned end-to-end encryption off yourself in '
           'the panel. If you did not, this device will start sending '
@@ -163,11 +163,11 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
             // focused eats the first OK press.
             autofocus: true,
             onPressed: () => Navigator.pop(ctx, false),
-            child: const Text('Cancel'),
+            child: const Text('取消'),
           ),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('I turned it off'),
+            child: const Text('我已关闭'),
           ),
         ],
       ),
@@ -274,7 +274,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Code copied'),
+        content: Text('代码已复制'),
         duration: Duration(seconds: 2),
       ),
     );
@@ -324,7 +324,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
       final proceed = await showDialog<bool>(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: const Text('Panel changed'),
+          title: const Text('管理面板已更改'),
           content: const Text(
             'This profile changed on the panel since this device last '
             'synced. Pushing will replace those newer changes.',
@@ -333,12 +333,12 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
             TextButton(
               autofocus: true,
               onPressed: () => Navigator.of(ctx).pop(false),
-              child: const Text('Cancel'),
+              child: const Text('取消'),
             ),
             FilledButton(
               style: FilledButton.styleFrom(backgroundColor: AppColors.danger),
               onPressed: () => Navigator.of(ctx).pop(true),
-              child: const Text('Replace panel profile'),
+              child: const Text('替换面板中的配置文件'),
             ),
           ],
         ),
@@ -349,7 +349,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Push to panel?'),
+        title: const Text('推送到管理面板？'),
         content: Text(
           'This replaces the source list, metadata settings, and favorites of '
           'the selected profile ($_activeProfileName) with the ones on this '
@@ -360,12 +360,12 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
           TextButton(
             autofocus: true,
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
+            child: const Text('取消'),
           ),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: AppColors.danger),
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Push'),
+            child: const Text('推送'),
           ),
         ],
       ),
@@ -422,7 +422,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Cloud sync')),
+      appBar: AppBar(title: const Text('云同步')),
       // Edge-to-edge (targetSdk 35+): keep the pairing/push controls clear of the
       // system bar.
       body: SafeArea(
@@ -468,7 +468,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
 
   List<Widget> _pairingBody() => [
     const Text(
-      'Pair this device',
+      '配对此设备',
       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
     ),
     const SizedBox(height: 8),
@@ -524,7 +524,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
     const SizedBox(height: 8),
     const Center(
       child: Text(
-        'Tap the code to copy it',
+        '点击代码即可复制',
         style: TextStyle(color: AppColors.textLo, fontSize: 12),
       ),
     ),
@@ -579,7 +579,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
     FilledButton.icon(
       onPressed: _busy ? null : _newCode,
       icon: const Icon(Icons.refresh),
-      label: const Text('New code'),
+      label: const Text('新代码'),
     ),
   ];
 
@@ -589,7 +589,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
         Icon(Icons.cloud_done_outlined, color: AppColors.accent),
         SizedBox(width: 10),
         Text(
-          'This device is paired',
+          '此设备已配对',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
         ),
       ],
@@ -615,7 +615,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
               child: CircularProgressIndicator(strokeWidth: 2),
             )
           : const Icon(Icons.sync),
-      label: const Text('Pull now'),
+      label: const Text('立即拉取'),
     ),
     const SizedBox(height: 12),
     OutlinedButton.icon(
@@ -623,13 +623,13 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
       // it can't produce the encrypted secret the server would accept.
       onPressed: (_busy || _crypto == CloudCryptoStatus.locked) ? null : _push,
       icon: const Icon(Icons.cloud_upload_outlined),
-      label: const Text('Push to panel'),
+      label: const Text('推送到管理面板'),
     ),
     const SizedBox(height: 12),
     OutlinedButton.icon(
       onPressed: _busy ? null : _unpair,
       icon: const Icon(Icons.link_off),
-      label: const Text('Unpair this device'),
+      label: const Text('取消此设备配对'),
     ),
   ];
 
@@ -660,7 +660,7 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
                 const SizedBox(height: 4),
                 TextButton(
                   onPressed: _busy ? null : _acknowledgeDowngrade,
-                  child: const Text('I turned encryption off on purpose'),
+                  child: const Text('我确认是主动关闭了加密'),
                 ),
               ],
             ),
@@ -709,17 +709,17 @@ class _CloudSyncScreenState extends State<CloudSyncScreen> {
       return const [
         SizedBox(height: 20),
         Text(
-          'No profiles yet — create one in the panel, then pull.',
+          '暂无配置文件。请先在管理面板创建一个，然后拉取。',
           style: TextStyle(color: AppColors.textLo),
         ),
       ];
     }
     return [
       const SizedBox(height: 20),
-      const Text('Profile', style: TextStyle(fontWeight: FontWeight.w700)),
+      const Text('配置文件', style: TextStyle(fontWeight: FontWeight.w700)),
       const SizedBox(height: 4),
       const Text(
-        'Pick which profile this device syncs.',
+        '选择此设备要同步的配置文件。',
         style: TextStyle(color: AppColors.textLo, fontSize: 12),
       ),
       const SizedBox(height: 10),

@@ -26,7 +26,7 @@ class LegalScreen extends StatelessWidget {
     );
     if (!opened && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Could not open the web page.')),
+        const SnackBar(content: Text('无法打开网页。')),
       );
     }
   }
@@ -34,7 +34,7 @@ class LegalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Help & about')),
+      appBar: AppBar(title: const Text('帮助与关于')),
       // Edge-to-edge (targetSdk 35+): the AppBar consumes the top inset, but the
       // body would otherwise run under the gesture/3-button bar — which in
       // landscape sits on the *side*, hiding the cards' trailing link icons.

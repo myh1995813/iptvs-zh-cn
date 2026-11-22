@@ -31,22 +31,22 @@ fun InfoPanel(
 ) {
     val rows = buildList {
         if (state.videoWidth > 0 && state.videoHeight > 0) {
-            add("Resolution" to "${state.videoWidth} × ${state.videoHeight}")
+            add("分辨率" to "${state.videoWidth} × ${state.videoHeight}")
         }
-        if (state.fps > 0f) add("Frame rate" to formatFps(state.fps))
-        if (state.dynamicRange.isNotBlank()) add("Dynamic range" to state.dynamicRange)
-        if (state.videoCodec.isNotBlank()) add("Video" to state.videoCodec)
+        if (state.fps > 0f) add("帧率" to formatFps(state.fps))
+        if (state.dynamicRange.isNotBlank()) add("动态范围" to state.dynamicRange)
+        if (state.videoCodec.isNotBlank()) add("视频" to state.videoCodec)
         if (state.audioCodec.isNotBlank()) {
             val channels = channelsLabel(state.audioChannels)
             val value = if (channels.isNotBlank()) "${state.audioCodec} · $channels" else state.audioCodec
-            add("Audio" to value)
+            add("音频" to value)
         }
         // Live only, and last: this panel carries no other buffer/network row,
         // so the contract's "right after the buffer row, else at the end of the
         // live rows" puts it here. It is deliberately shown from the first
         // frame rather than only once behind — a viewer checking whether the
         // stream is delayed needs an answer, and `0:00` is one.
-        if (state.isLive) add("Live delay" to state.liveDelayInfo())
+        if (state.isLive) add("直播延迟" to state.liveDelayInfo())
     }
     if (rows.isEmpty()) return
 
@@ -58,7 +58,7 @@ fun InfoPanel(
             .padding(horizontal = 16.dp, vertical = 14.dp),
     ) {
         Text(
-            text = "Stream info",
+            text = "流信息",
             color = PlayerColors.TextLo,
             fontFamily = InterFontFamily,
             fontWeight = FontWeight.SemiBold,
@@ -117,8 +117,8 @@ private fun formatFps(fps: Float): String {
 
 private fun channelsLabel(channels: Int): String = when {
     channels <= 0 -> ""
-    channels == 1 -> "Mono"
-    channels == 2 -> "Stereo"
+    channels == 1 -> "单声道"
+    channels == 2 -> "立体声"
     channels == 6 -> "5.1"
     channels == 8 -> "7.1"
     else -> "${channels}ch"

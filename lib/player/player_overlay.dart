@@ -2465,11 +2465,11 @@ class EmbeddedPlayerControlsState extends State<EmbeddedPlayerControls> {
   // standard way to name an icon-only Material button, and it leaves the
   // button's own tap semantics (which open the menu) intact.
   Widget _audioMenu() => PopupMenuButton<String>(
-    tooltip: 'Audio track',
+    tooltip: '音轨',
     icon: const Icon(
       Icons.audiotrack,
       color: Colors.white,
-      semanticLabel: 'Audio track',
+      semanticLabel: '音轨',
     ),
     onOpened: _onMenuOpened,
     onCanceled: _onMenuClosed,
@@ -2490,11 +2490,11 @@ class EmbeddedPlayerControlsState extends State<EmbeddedPlayerControls> {
     // decided by [_subtitleTracks], which counts only real tracks.
     final tracks = widget.controls.state.tracks.subtitle;
     return PopupMenuButton<String>(
-      tooltip: 'Subtitles',
+      tooltip: '字幕',
       icon: const Icon(
         Icons.subtitles,
         color: Colors.white,
-        semanticLabel: 'Subtitles',
+        semanticLabel: '字幕',
       ),
       onOpened: _onMenuOpened,
       onCanceled: _onMenuClosed,
@@ -2511,11 +2511,11 @@ class EmbeddedPlayerControlsState extends State<EmbeddedPlayerControls> {
   }
 
   Widget _speedMenu() => PopupMenuButton<double>(
-    tooltip: 'Playback speed',
+    tooltip: '播放速度',
     icon: const Icon(
       Icons.speed,
       color: Colors.white,
-      semanticLabel: 'Playback speed',
+      semanticLabel: '播放速度',
     ),
     onOpened: _onMenuOpened,
     onCanceled: _onMenuClosed,
@@ -2620,7 +2620,7 @@ class EmbeddedPlayerControlsState extends State<EmbeddedPlayerControls> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Stream information',
+                  '流信息',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 17,
@@ -2891,7 +2891,7 @@ class PlayerReconnectChip extends StatelessWidget {
               ),
               SizedBox(width: 10),
               Text(
-                'Reconnecting…',
+                '正在重新连接…',
                 style: TextStyle(color: AppColors.textHi, fontSize: 14),
               ),
             ],
@@ -2939,12 +2939,12 @@ class PlayerErrorOverlay extends StatelessWidget {
               FilledButton.icon(
                 onPressed: onBack,
                 icon: const Icon(Icons.arrow_back),
-                label: const Text('Back'),
+                label: const Text('返回'),
               ),
               FilledButton.icon(
                 onPressed: onRetry,
                 icon: const Icon(Icons.refresh),
-                label: const Text('Retry'),
+                label: const Text('重试'),
               ),
             ],
           ),

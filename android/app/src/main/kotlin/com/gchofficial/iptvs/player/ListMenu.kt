@@ -63,19 +63,19 @@ fun BoxScope.PlayerMenusLayer(
 
     when (menu) {
         PlayerMenu.Audio -> {
-            header = "Audio"
+            header = "音频"
             options = state.audioTracks
             selectedId = state.selectedAudioId
             onSelect = { callbacks.onSelectAudio(it) }
         }
         PlayerMenu.Subtitles -> {
-            header = "Subtitles"
+            header = "字幕"
             options = state.subtitleTracks
             selectedId = state.selectedSubtitleId
             onSelect = { callbacks.onSelectSubtitle(it) }
         }
         PlayerMenu.Speed -> {
-            header = "Playback speed"
+            header = "播放速度"
             options = SPEED_OPTIONS.map { TrackOption(speedId(it), speedOptionLabel(it)) }
             selectedId = speedId(state.speed)
             onSelect = { id -> id.toFloatOrNull()?.let { callbacks.onSetSpeed(it) } }

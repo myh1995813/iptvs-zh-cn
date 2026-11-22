@@ -141,7 +141,7 @@ class _SendDiagnosticsScreenState extends State<SendDiagnosticsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Send diagnostics')),
+      appBar: AppBar(title: const Text('发送诊断信息')),
       // Edge-to-edge (targetSdk 35+): in landscape the system bar sits on the
       // side, where the action row's trailing button would otherwise go.
       body: SafeArea(
@@ -188,7 +188,7 @@ class _SendDiagnosticsScreenState extends State<SendDiagnosticsScreen> {
                 child: CircularProgressIndicator(strokeWidth: 2),
               ),
               SizedBox(width: 12),
-              Text('Sending…', style: TextStyle(color: AppColors.textLo)),
+              Text('正在发送…', style: TextStyle(color: AppColors.textLo)),
             ],
           ),
         )
@@ -199,26 +199,26 @@ class _SendDiagnosticsScreenState extends State<SendDiagnosticsScreen> {
             OutlinedButton(
               autofocus: true,
               onPressed: () => Navigator.of(context).maybePop(),
-              child: const Text('Cancel'),
+              child: const Text('取消'),
             ),
             if (_cloud)
               FilledButton.icon(
                 onPressed: _send,
                 icon: const Icon(Icons.cloud_upload_outlined, size: 18),
-                label: const Text('Send to developer'),
+                label: const Text('发送给开发者'),
               ),
             // Primary styling when it is the only way out of this screen.
             if (_cloud)
               OutlinedButton.icon(
                 onPressed: _shareOverLan,
                 icon: const Icon(Icons.wifi_tethering, size: 18),
-                label: const Text('Share on Wi-Fi'),
+                label: const Text('通过 Wi-Fi 共享'),
               )
             else
               FilledButton.icon(
                 onPressed: _shareOverLan,
                 icon: const Icon(Icons.wifi_tethering, size: 18),
-                label: const Text('Share on Wi-Fi'),
+                label: const Text('通过 Wi-Fi 共享'),
               ),
           ],
         ),
@@ -237,7 +237,7 @@ class _SendDiagnosticsScreenState extends State<SendDiagnosticsScreen> {
 
   List<Widget> _sentBody() => [
     const Text(
-      'Sent. Give the developer this code — it is how they find your log.',
+      '已发送。请将此代码提供给开发者，以便查找你的日志。',
       style: TextStyle(color: AppColors.textHi, height: 1.4),
     ),
     const SizedBox(height: 20),
@@ -274,17 +274,17 @@ class _SendDiagnosticsScreenState extends State<SendDiagnosticsScreen> {
           autofocus: true,
           onPressed: () => _copy(_code, 'Code copied'),
           icon: const Icon(Icons.copy_outlined, size: 18),
-          label: const Text('Copy'),
+          label: const Text('复制'),
         ),
         OutlinedButton(
           onPressed: () => Navigator.of(context).maybePop(),
-          child: const Text('Done'),
+          child: const Text('完成'),
         ),
       ],
     ),
     const SizedBox(height: 16),
     const Text(
-      'The log is stored for 30 days and then deleted automatically.',
+      '日志将保存 30 天，之后自动删除。',
       style: TextStyle(color: AppColors.textLo, fontSize: 12),
     ),
   ];
@@ -298,7 +298,7 @@ class _SendDiagnosticsScreenState extends State<SendDiagnosticsScreen> {
     ),
     const SizedBox(height: 16),
     const Text(
-      'You can try again, or hand the log over on your local network instead.',
+      '你可以重试，也可以改为通过本地网络交付日志。',
       style: TextStyle(color: AppColors.textLo),
     ),
     const SizedBox(height: 20),
@@ -312,16 +312,16 @@ class _SendDiagnosticsScreenState extends State<SendDiagnosticsScreen> {
           autofocus: true,
           onPressed: _send,
           icon: const Icon(Icons.refresh, size: 18),
-          label: const Text('Try again'),
+          label: const Text('重试'),
         ),
         OutlinedButton.icon(
           onPressed: _shareOverLan,
           icon: const Icon(Icons.wifi_tethering, size: 18),
-          label: const Text('Share on Wi-Fi'),
+          label: const Text('通过 Wi-Fi 共享'),
         ),
         OutlinedButton(
           onPressed: () => Navigator.of(context).maybePop(),
-          child: const Text('Cancel'),
+          child: const Text('取消'),
         ),
       ],
     ),

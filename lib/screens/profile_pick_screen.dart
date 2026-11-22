@@ -404,7 +404,7 @@ class _ProfilePickScreenState extends State<ProfilePickScreen> {
       context: context,
       builder: (ctx) => AlertDialog(
         backgroundColor: AppColors.panel,
-        title: Text('Switch to ${entry.name}?'),
+        title: Text('切换到 ${entry.name}？'),
         content: Text(
           '${preview.sourcesAdded} source${preview.sourcesAdded == 1 ? '' : 's'} '
           'will be added, ${preview.sourcesRemoved} removed, and '
@@ -421,11 +421,11 @@ class _ProfilePickScreenState extends State<ProfilePickScreen> {
             // focused eats the first OK press.
             autofocus: true,
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
+            child: const Text('取消'),
           ),
           FilledButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Switch profile'),
+            child: const Text('切换配置文件'),
           ),
         ],
       ),
@@ -623,7 +623,7 @@ class _ProfilePickScreenState extends State<ProfilePickScreen> {
           if (entry.locked)
             ListTile(
               leading: const Icon(Icons.lock_open_rounded),
-              title: const Text('Remove PIN'),
+              title: const Text('移除 PIN'),
               onTap: () => Navigator.of(ctx).pop('unpin'),
             ),
           if (!entry.isCloud)
@@ -633,14 +633,14 @@ class _ProfilePickScreenState extends State<ProfilePickScreen> {
                 color: AppColors.danger,
               ),
               title: const Text(
-                'Delete profile',
+                '删除配置文件',
                 style: TextStyle(color: AppColors.danger),
               ),
               onTap: () => Navigator.of(ctx).pop('delete'),
             ),
           ListTile(
             leading: const Icon(Icons.close_rounded),
-            title: const Text('Cancel'),
+            title: const Text('取消'),
             onTap: () => Navigator.of(ctx).pop(),
           ),
         ],
@@ -713,21 +713,21 @@ class _ProfilePickScreenState extends State<ProfilePickScreen> {
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor: AppColors.panel,
-        title: const Text('Delete profile?'),
+        title: const Text('删除配置文件？'),
         content: Text(
-          'Delete “${entry.name}”? This cannot be undone.',
+          '删除“${entry.name}”？此操作无法撤销。',
           style: const TextStyle(fontSize: 14),
         ),
         actions: [
           TextButton(
             autofocus: true,
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: const Text('取消'),
           ),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: AppColors.danger),
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Delete'),
+            child: const Text('删除'),
           ),
         ],
       ),
@@ -841,7 +841,7 @@ class _ProfilePickScreenState extends State<ProfilePickScreen> {
                     _AppLogo(),
                     SizedBox(height: compact ? 14 : 40),
                     Text(
-                      "Who's watching?",
+                      "谁在使用？",
                       style: TextStyle(
                         fontFamily: 'Inter',
                         fontSize: compact ? 28 : 38,
@@ -852,7 +852,7 @@ class _ProfilePickScreenState extends State<ProfilePickScreen> {
                     ),
                     SizedBox(height: compact ? 6 : 10),
                     Text(
-                      'Select a profile to continue',
+                      '选择一个配置文件以继续',
                       style: TextStyle(
                         fontSize: compact ? 13 : 15,
                         color: AppColors.textLo,
@@ -944,7 +944,7 @@ class _ProfilePickScreenState extends State<ProfilePickScreen> {
                       TextButton.icon(
                         onPressed: _busy ? null : _goToCloudSync,
                         icon: const Icon(Icons.cloud_outlined, size: 16),
-                        label: const Text('Link to cloud account'),
+                        label: const Text('关联云端账户'),
                         style: TextButton.styleFrom(
                           foregroundColor: AppColors.textLo,
                           textStyle: const TextStyle(fontSize: 13),
@@ -976,7 +976,7 @@ class _ProfilePickScreenState extends State<ProfilePickScreen> {
                       TextButton(
                         onPressed: _busy ? null : _goHome,
                         child: Text(
-                          'Skip',
+                          '跳过',
                           style: TextStyle(
                             color: AppColors.textLo.withValues(alpha: 0.5),
                             fontSize: 13,
@@ -1022,7 +1022,7 @@ class _AppLogo extends StatelessWidget {
         ),
         const SizedBox(width: 12),
         Text(
-          'iptvs',
+          'IPTVS',
           style: const TextStyle(
             fontFamily: 'Inter',
             fontSize: 26,
@@ -1363,7 +1363,7 @@ class _AddProfileCircleState extends State<_AddProfileCircle> {
               ),
               SizedBox(height: widget.compact ? 8 : 14),
               Text(
-                'Add profile',
+                '添加配置文件',
                 maxLines: 1,
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -1402,14 +1402,14 @@ class _CreateProfileDialogState extends State<_CreateProfileDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.panel,
-      title: const Text('New profile'),
+      title: const Text('新建配置文件'),
       // TvTextField, not a bare TextField: on a TV remote a plain TextField
       // traps D-pad focus (the editor eats the arrow keys), leaving no way out.
       // This wraps it in the "OK to edit" cell the rest of the app uses.
       content: TvTextField(
         controller: _controller,
         label: 'Profile name',
-        hintText: 'e.g. Living room',
+        hintText: '例如：客厅',
         autofocus: true,
         textInputAction: TextInputAction.done,
         onSubmitted: (v) => Navigator.of(context).pop(v.trim()),
@@ -1417,11 +1417,11 @@ class _CreateProfileDialogState extends State<_CreateProfileDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: const Text('取消'),
         ),
         FilledButton(
           onPressed: () => Navigator.of(context).pop(_controller.text.trim()),
-          child: const Text('Create'),
+          child: const Text('创建'),
         ),
       ],
     );

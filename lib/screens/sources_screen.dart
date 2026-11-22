@@ -177,7 +177,7 @@ class _SourcesScreenState extends State<SourcesScreen> {
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor: AppColors.panelHi,
-        title: const Text('Delete source?'),
+        title: const Text('删除此来源？'),
         content: Text('Remove "${c.label}"?'),
         actions: [
           TextButton(
@@ -186,12 +186,12 @@ class _SourcesScreenState extends State<SourcesScreen> {
             // user has to blind-hunt with arrows before anything responds.
             autofocus: true,
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: const Text('取消'),
           ),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: AppColors.danger),
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete'),
+            child: const Text('删除'),
           ),
         ],
       ),
@@ -210,7 +210,7 @@ class _SourcesScreenState extends State<SourcesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sources'),
+        title: const Text('来源'),
         actions: [
           AppBarAction(
             label: 'Profiles',
@@ -246,7 +246,7 @@ class _SourcesScreenState extends State<SourcesScreen> {
             ),
           AppBarAction(
             label: 'Metadata',
-            tooltip: 'Posters, ratings and descriptions',
+            tooltip: '海报、评分和简介',
             icon: Icons.auto_awesome_outlined,
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
@@ -275,7 +275,7 @@ class _SourcesScreenState extends State<SourcesScreen> {
         autofocus: !_loading && _sources.isEmpty,
         onPressed: _add,
         icon: const Icon(Icons.add),
-        label: const Text('Add source'),
+        label: const Text('添加来源'),
       ),
       // Edge-to-edge (targetSdk 35+): the Scaffold already keeps the FAB clear of
       // the system bar, but the body underneath it does not inset itself.
@@ -308,7 +308,7 @@ class _SourcesScreenState extends State<SourcesScreen> {
                     child: _sources.isEmpty
                         ? const Center(
                             child: Text(
-                              'No sources yet — add one',
+                              '还没有来源，添加一个吧',
                               style: TextStyle(color: AppColors.textLo),
                             ),
                           )
@@ -712,7 +712,7 @@ class _SourceCardState extends State<_SourceCard> {
                     Icons.keyboard_arrow_up,
                     color: widget.canMoveUp ? AppColors.textLo : AppColors.line,
                   ),
-                  tooltip: 'Move up',
+                  tooltip: '上移',
                   onPressed: widget.onMoveUp,
                 ),
                 IconButton(
@@ -723,13 +723,13 @@ class _SourceCardState extends State<_SourceCard> {
                         ? AppColors.textLo
                         : AppColors.line,
                   ),
-                  tooltip: 'Move down',
+                  tooltip: '下移',
                   onPressed: widget.onMoveDown,
                 ),
                 IconButton(
                   focusNode: _settingsNode,
                   icon: const Icon(Icons.tune, color: AppColors.textLo),
-                  tooltip: 'Settings',
+                  tooltip: '设置',
                   onPressed: widget.onSettings,
                 ),
                 IconButton(
@@ -738,7 +738,7 @@ class _SourceCardState extends State<_SourceCard> {
                     Icons.edit_outlined,
                     color: AppColors.textLo,
                   ),
-                  tooltip: 'Edit',
+                  tooltip: '编辑',
                   onPressed: widget.onEdit,
                 ),
                 IconButton(
@@ -747,7 +747,7 @@ class _SourceCardState extends State<_SourceCard> {
                     Icons.delete_outline,
                     color: AppColors.textLo,
                   ),
-                  tooltip: 'Delete',
+                  tooltip: '删除',
                   onPressed: widget.onDelete,
                 ),
               ];
@@ -850,7 +850,7 @@ class _NeedsAttentionBadge extends StatelessWidget {
         const SizedBox(width: 4),
         Flexible(
           child: Text(
-            'Needs attention — credentials locked. Unlock in the panel.',
+            '需要处理：凭据已锁定。请在管理面板中解锁。',
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(color: color, fontSize: 12),
           ),
@@ -872,7 +872,7 @@ class _ActivePill extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
       ),
       child: const Text(
-        'ACTIVE',
+        '已启用',
         style: TextStyle(
           color: AppColors.accent,
           fontSize: 10,
@@ -1176,7 +1176,7 @@ class _EditSourceScreenState extends State<EditSourceScreen> {
                 const Padding(
                   padding: EdgeInsets.only(left: 4, bottom: 6),
                   child: Text(
-                    'Type',
+                    '类型',
                     style: TextStyle(
                       color: AppColors.textLo,
                       fontSize: 12,
@@ -1226,7 +1226,7 @@ class _EditSourceScreenState extends State<EditSourceScreen> {
                 TvTextField(
                   controller: _label,
                   label: 'Label (optional)',
-                  hintText: 'e.g. Living room IPTV',
+                  hintText: '例如：客厅 IPTV',
                   textInputAction: TextInputAction.next,
                 ),
                 for (final s in _specs(_kind)) ...[
@@ -1337,7 +1337,7 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
     if (!mounted) return;
     setState(() => _saving = false);
     ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Metadata settings saved')));
+        .showSnackBar(const SnackBar(content: Text('元数据设置已保存')));
   }
 
   Future<void> _clearMetadataCache() async {
@@ -1345,7 +1345,7 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor: AppColors.panelHi,
-        title: const Text('Clear metadata cache?'),
+        title: const Text('清除元数据缓存？'),
         content: const Text(
           'This removes cached external metadata. Refresh the source afterward if you want provider titles/posters restored before re-enrichment.',
         ),
@@ -1356,12 +1356,12 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
             // user has to blind-hunt with arrows before anything responds.
             autofocus: true,
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: const Text('取消'),
           ),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: AppColors.danger),
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Clear'),
+            child: const Text('清除'),
           ),
         ],
       ),
@@ -1370,7 +1370,7 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
     await widget.db.clearExternalMetadata();
     if (!mounted) return;
     ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Metadata cache cleared')));
+        .showSnackBar(const SnackBar(content: Text('元数据缓存已清除')));
   }
 
   Future<void> _resetMetadataAndDisplay() async {
@@ -1378,7 +1378,7 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor: AppColors.panelHi,
-        title: const Text('Reset enriched display?'),
+        title: const Text('重置增强显示信息？'),
         content: const Text(
           'This clears external metadata and restores cached movie/series display fields from source-provided data where possible.',
         ),
@@ -1389,12 +1389,12 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
             // user has to blind-hunt with arrows before anything responds.
             autofocus: true,
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: const Text('取消'),
           ),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: AppColors.danger),
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Reset'),
+            child: const Text('重置'),
           ),
         ],
       ),
@@ -1404,13 +1404,13 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
     await widget.db.resetEnrichedMediaDisplayFields();
     if (!mounted) return;
     ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Metadata display reset')));
+        .showSnackBar(const SnackBar(content: Text('元数据显示已重置')));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Metadata')),
+      appBar: AppBar(title: const Text('元数据')),
       // Edge-to-edge (targetSdk 35+): keep the form clear of the system bar.
       body: SafeArea(
         top: false,
@@ -1425,7 +1425,7 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
                     padding: const EdgeInsets.all(16),
                     children: [
                       Text(
-                        'Metadata provider',
+                        '元数据提供方',
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 8),
@@ -1447,7 +1447,7 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
                       TvTextField(
                         controller: _tmdb,
                         label: 'TMDB API credential',
-                        hintText: 'Paste a v3 API key or v4 Read Access Token',
+                        hintText: '粘贴 v3 API 密钥或 v4 Read Access Token',
                         obscureText: true,
                         autofocus: true,
                         textInputAction: TextInputAction.next,
@@ -1457,7 +1457,7 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
                         controller: _tvdb,
                         label: 'TVDB API key',
                         hintText:
-                            'Used as preferred or fallback visual provider',
+                            '用作首选或备用影视元数据提供方',
                         obscureText: true,
                         textInputAction: TextInputAction.next,
                       ),
@@ -1465,7 +1465,7 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
                       TvTextField(
                         controller: _tvdbPin,
                         label: 'TVDB PIN',
-                        hintText: 'Optional user-supported key PIN',
+                        hintText: '可选的用户密钥 PIN 码',
                         obscureText: true,
                         textInputAction: TextInputAction.next,
                       ),
@@ -1473,23 +1473,23 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
                       TvTextField(
                         controller: _mdblist,
                         label: 'MDBList API key',
-                        hintText: 'Optional ratings enrichment',
+                        hintText: '可选的评分补充服务',
                         obscureText: true,
                         textInputAction: TextInputAction.done,
                         onSubmitted: (_) => _save(),
                       ),
                       const SizedBox(height: 8),
                       const Text(
-                        'Changes apply after returning to the library.',
+                        '返回媒体库后更改生效。',
                         style: TextStyle(color: AppColors.textLo, fontSize: 12),
                       ),
                       const SizedBox(height: 16),
                       SwitchListTile(
                         value: _autoEnrich,
                         contentPadding: EdgeInsets.zero,
-                        title: const Text('Auto-enrich loaded lists'),
+                        title: const Text('自动补充已加载列表的元数据'),
                         subtitle: const Text(
-                          'Fetch metadata in the background after movies or series load.',
+                          '电影或剧集加载后，在后台获取元数据。',
                           style: TextStyle(color: AppColors.textLo),
                         ),
                         onChanged: (value) =>
@@ -1499,13 +1499,13 @@ class _MetadataSettingsScreenState extends State<MetadataSettingsScreen> {
                       OutlinedButton.icon(
                         onPressed: _clearMetadataCache,
                         icon: const Icon(Icons.delete_sweep_outlined),
-                        label: const Text('Clear metadata cache'),
+                        label: const Text('清除元数据缓存'),
                       ),
                       const SizedBox(height: 8),
                       OutlinedButton.icon(
                         onPressed: _resetMetadataAndDisplay,
                         icon: const Icon(Icons.restore_outlined),
-                        label: const Text('Reset enriched display'),
+                        label: const Text('重置增强显示信息'),
                       ),
                       const SizedBox(height: 24),
                       SizedBox(
@@ -1597,7 +1597,7 @@ class _PickerStartupCardState extends State<_PickerStartupCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Profile picker at startup'),
+                  const Text('启动时显示配置文件选择器'),
                   Text(
                     _hint,
                     style: const TextStyle(
@@ -1693,7 +1693,7 @@ class _CrashReportsCardState extends State<_CrashReportsCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Send crash reports'),
+                  const Text('发送崩溃报告'),
                   Text(
                     _hint,
                     style: const TextStyle(
@@ -1744,7 +1744,7 @@ class _UpdateTrackCardState extends State<_UpdateTrackCard> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: AppColors.panelHi,
-        title: const Text('GitHub update track'),
+        title: const Text('GitHub 更新通道'),
         content: const Text(
           'Stable receives normal releases. Beta also receives signed GitHub '
           'prereleases intended for testing. Switching back to Stable never '
@@ -1754,12 +1754,12 @@ class _UpdateTrackCardState extends State<_UpdateTrackCard> {
           TextButton(
             autofocus: _track == UpdateTrack.stable,
             onPressed: () => Navigator.pop(context, UpdateTrack.stable),
-            child: const Text('Stable'),
+            child: const Text('稳定版'),
           ),
           FilledButton(
             autofocus: _track == UpdateTrack.beta,
             onPressed: () => Navigator.pop(context, UpdateTrack.beta),
-            child: const Text('Beta'),
+            child: const Text('测试版'),
           ),
         ],
       ),
@@ -1789,7 +1789,7 @@ class _UpdateTrackCardState extends State<_UpdateTrackCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('GitHub update track'),
+                  const Text('GitHub 更新通道'),
                   Text(
                     _track.displayName,
                     style: const TextStyle(
@@ -1867,7 +1867,7 @@ class _UpdateCardState extends State<_UpdateCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Check for updates'),
+                  const Text('检查更新'),
                   Text(
                     _version == null ? 'Current version' : 'Version $_version',
                     style: const TextStyle(

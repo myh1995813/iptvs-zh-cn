@@ -470,7 +470,7 @@ class _EpgGridScreenState extends State<EpgGridScreen>
                       child: widget.channels.isEmpty
                           ? const Center(
                               child: Text(
-                                'No channels',
+                                '没有频道',
                                 style: TextStyle(color: AppColors.textLo),
                               ),
                             )
@@ -610,13 +610,13 @@ class _EpgGridScreenState extends State<EpgGridScreen>
             // focused and the D-pad has no target.
             autofocus: !canCatchup && !isCurrent,
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Close'),
+            child: const Text('关闭'),
           ),
           if (canCatchup)
             FilledButton.icon(
               autofocus: true,
               icon: const Icon(Icons.replay_rounded, size: 18),
-              label: const Text('Watch catch-up'),
+              label: const Text('观看回看'),
               onPressed: () {
                 Navigator.of(context).pop();
                 widget.onPlayArchive(channel, programme);
@@ -626,7 +626,7 @@ class _EpgGridScreenState extends State<EpgGridScreen>
             FilledButton.icon(
               autofocus: true,
               icon: const Icon(Icons.play_arrow_rounded, size: 18),
-              label: const Text('Play live'),
+              label: const Text('播放直播'),
               onPressed: () {
                 Navigator.of(context).pop();
                 widget.onPlayChannel(channel);

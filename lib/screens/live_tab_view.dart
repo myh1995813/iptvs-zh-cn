@@ -746,7 +746,7 @@ class _LiveCategoryPane extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.fromLTRB(8, 4, 8, 8),
             child: Text(
-              'Playlists',
+              '播放列表',
               style: TextStyle(
                 color: AppColors.textLo,
                 fontWeight: FontWeight.w700,
@@ -1071,7 +1071,7 @@ class _LivePreviewPanel extends StatelessWidget {
                         alignment: Alignment.center,
                         padding: const EdgeInsets.all(10),
                         child: const Text(
-                          'Preview unavailable',
+                          '预览不可用',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: AppColors.textLo,
@@ -1094,7 +1094,7 @@ class _LivePreviewPanel extends StatelessWidget {
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: const Text(
-                            'Preview',
+                            '预览',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 11,
@@ -1192,7 +1192,7 @@ class _LivePreviewPanel extends StatelessWidget {
                     )
                   else
                     const Text(
-                      'No programme information',
+                      '暂无节目单信息',
                       style: TextStyle(color: AppColors.textLo, fontSize: 14),
                     ),
                   if (progress != null) ...[
@@ -1274,7 +1274,7 @@ class _CatchupButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final button = IconButton(
-      tooltip: 'Catch-up',
+      tooltip: '回看',
       focusNode: focusNode,
       icon: const Icon(Icons.history_rounded, color: AppColors.textLo),
       onPressed: onPressed,
@@ -1627,7 +1627,7 @@ class _PhonePreviewSheetState extends State<PhonePreviewSheet> {
                         )
                       else
                         const Text(
-                          'No programme information',
+                          '暂无节目单信息',
                           style: TextStyle(
                             color: AppColors.textLo,
                             fontSize: 14,
@@ -1655,7 +1655,7 @@ class _PhonePreviewSheetState extends State<PhonePreviewSheet> {
                 child: FilledButton.icon(
                   onPressed: widget.onPlay,
                   icon: const Icon(Icons.play_arrow_rounded),
-                  label: const Text('Play fullscreen'),
+                  label: const Text('全屏播放'),
                 ),
               ),
             ],

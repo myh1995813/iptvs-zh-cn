@@ -366,7 +366,7 @@ private fun TopBar(
                 ) {
                     IconControlButton(
                         icon = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Back",
+                        contentDescription = "返回",
                         onClick = { onInteract(); callbacks.onBack() },
                     )
                     Spacer(Modifier.width(14.dp))
@@ -404,7 +404,7 @@ private fun TopBar(
             ) {
                 IconControlButton(
                     icon = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = "返回",
                     onClick = { onInteract(); callbacks.onBack() },
                 )
                 Spacer(Modifier.width(14.dp))
@@ -541,24 +541,24 @@ private fun RowScope.TransportControls(
     // the manual spacers; otherwise (landscape) we space the controls ourselves.
     IconControlButton(
         icon = if (state.isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
-        contentDescription = "Play/Pause",
+        contentDescription = "播放/暂停",
         focusRequester = playFocus,
         onClick = { onInteract(); callbacks.onPlayPause() },
     )
     if (!state.isLive) {
         if (!spread) Spacer(Modifier.width(8.dp))
-        IconControlButton(Icons.Filled.Replay10, "Back 10s") {
+        IconControlButton(Icons.Filled.Replay10, "后退 10 秒") {
             onInteract(); callbacks.onSeekBy(-10_000)
         }
         if (!spread) Spacer(Modifier.width(8.dp))
-        IconControlButton(Icons.Filled.Forward10, "Forward 10s") {
+        IconControlButton(Icons.Filled.Forward10, "前进 10 秒") {
             onInteract(); callbacks.onSeekBy(10_000)
         }
     }
     if (!spread) Spacer(Modifier.width(8.dp))
     IconControlButton(
         icon = if (state.muted || state.volume == 0f) Icons.Filled.VolumeOff else Icons.Filled.VolumeUp,
-        contentDescription = "Mute",
+        contentDescription = "静音",
     ) { onInteract(); callbacks.onToggleMute() }
     if (!spread) Spacer(Modifier.width(8.dp))
     SlimSlider(
@@ -583,7 +583,7 @@ private fun RowScope.RightCluster(
     // When `spread`, the parent Row supplies the gaps (portrait, `spacedBy`), so we
     // omit the manual spacers; otherwise (landscape) we space the buttons ourselves.
     //
-    // The quick-list opener, **immediately left of "Go to live"** — the slot
+    // The quick-list opener, **immediately left of "回到直播"** — the slot
     // every surface that draws its own chrome gives it (the Windows GDI
     // `BottomLayout::quick_list`, the shared Flutter cluster, the Linux Lua
     // OSD). A remote reaches the list with Left or GUIDE; a finger and a mouse
@@ -602,16 +602,16 @@ private fun RowScope.RightCluster(
     if (state.showQuickListButton) {
         IconControlButton(
             icon = Icons.AutoMirrored.Filled.List,
-            contentDescription = "Channel list",
+            contentDescription = "频道列表",
         ) { onInteract(); callbacks.onZapCommand("zap:list") }
         if (!spread) Spacer(Modifier.width(8.dp))
     }
     // Live-only "jump to live edge", shown only once behind (paused) — separate
     // from play/pause, which keeps resuming from where you paused. The label is
-    // the action, not the state: this used to read "LIVE", duplicating the LIVE
+    // the action, not the state: this used to read "直播", duplicating the LIVE
     // *status* badge in the top bar (which greys at the very moment this button
     // appears) with a word that says nothing about what pressing it does. Every
-    // overlay already declared "Go to live" as the accessible name; the visible
+    // overlay already declared "回到直播" as the accessible name; the visible
     // label now agrees with it. Same wording on Windows, iOS, Linux and the
     // shared Flutter overlay.
     //
@@ -634,8 +634,8 @@ private fun RowScope.RightCluster(
             }
         }
         TextControlButton(
-            label = "Go to live",
-            contentDescription = "Go to live",
+            label = "回到直播",
+            contentDescription = "回到直播",
             onFocusChanged = { goLiveFocused = it },
         ) {
             onInteract()
@@ -647,42 +647,42 @@ private fun RowScope.RightCluster(
     if (state.canFavorite) {
         IconControlButton(
             icon = if (state.isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
-            contentDescription = if (state.isFavorite) "Remove from favorites" else "Add to favorites",
+            contentDescription = if (state.isFavorite) "从收藏夹移除" else "添加到收藏夹",
         ) { onInteract(); callbacks.onToggleFavorite() }
         if (!spread) Spacer(Modifier.width(8.dp))
     }
     if (state.showSpeedButton) {
-        TextControlButton(state.speedLabel(), "Playback speed") {
+        TextControlButton(state.speedLabel(), "播放速度") {
             onInteract(); state.openMenu =
                 if (state.openMenu == PlayerMenu.Speed) PlayerMenu.None else PlayerMenu.Speed
         }
         if (!spread) Spacer(Modifier.width(8.dp))
     }
     if (state.showAudioButton) {
-        IconControlButton(Icons.Filled.Audiotrack, "Audio track") {
+        IconControlButton(Icons.Filled.Audiotrack, "音轨") {
             onInteract(); state.openMenu =
                 if (state.openMenu == PlayerMenu.Audio) PlayerMenu.None else PlayerMenu.Audio
         }
         if (!spread) Spacer(Modifier.width(8.dp))
     }
     if (state.showSubtitleButton) {
-        IconControlButton(Icons.Filled.ClosedCaption, "Subtitles") {
+        IconControlButton(Icons.Filled.ClosedCaption, "字幕") {
             onInteract(); state.openMenu =
                 if (state.openMenu == PlayerMenu.Subtitles) PlayerMenu.None else PlayerMenu.Subtitles
         }
         if (!spread) Spacer(Modifier.width(8.dp))
     }
-    TextControlButton(state.aspect.label, "Aspect ratio") {
+    TextControlButton(state.aspect.label, "画面比例") {
         onInteract(); callbacks.onCycleAspect()
     }
     if (state.supportsPip) {
         if (!spread) Spacer(Modifier.width(8.dp))
-        IconControlButton(Icons.Filled.PictureInPictureAlt, "Picture in picture") {
+        IconControlButton(Icons.Filled.PictureInPictureAlt, "画中画") {
             onInteract(); callbacks.onEnterPip()
         }
     }
     if (!spread) Spacer(Modifier.width(8.dp))
-    IconControlButton(Icons.Filled.Info, "Stream info") {
+    IconControlButton(Icons.Filled.Info, "流信息") {
         onInteract(); state.infoOpen = !state.infoOpen
     }
 }
@@ -837,7 +837,7 @@ private fun UnsupportedVideoNotice(reason: String, modifier: Modifier = Modifier
         )
         Spacer(Modifier.height(6.dp))
         Text(
-            text = "Audio is still playing.",
+            text = "音频仍在播放。",
             color = PlayerColors.TextLo,
             fontFamily = InterFontFamily,
             fontSize = 13.sp,
@@ -861,7 +861,7 @@ private fun ReconnectingNotice(modifier: Modifier = Modifier) {
         )
         Spacer(Modifier.width(12.dp))
         Text(
-            text = "Reconnecting…",
+            text = "正在重新连接…",
             color = PlayerColors.TextHi,
             fontFamily = InterFontFamily,
             fontWeight = FontWeight.SemiBold,
@@ -871,7 +871,7 @@ private fun ReconnectingNotice(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun LiveBadge(synced: Boolean = true, label: String = "LIVE") {
+fun LiveBadge(synced: Boolean = true, label: String = "直播") {
     // Red at the live edge; grey once behind (paused/seeked/drifted). Pairs
     // with the go-to-live button, which appears only while behind.
     //
@@ -960,7 +960,7 @@ fun SlimSlider(
             // the slider was the one focus stop in the overlay whose focused
             // state was a 2dp ring on a 14dp thumb — walking onto it with a
             // D-pad read as "the focus disappeared", which is exactly how the
-            // "Go to live" stranding was first described. Opt-in so the VOD
+            // "回到直播" stranding was first described. Opt-in so the VOD
             // scrubber, which spans the bar, stays a bare track.
             .then(
                 if (chip) {

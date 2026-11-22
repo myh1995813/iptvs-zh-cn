@@ -418,7 +418,7 @@ class _PinDialogState extends State<_PinDialog> {
                   )
                 else
                   const Text(
-                    'Type the digits on your keyboard.',
+                    '请使用键盘输入数字。',
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

@@ -507,7 +507,7 @@ class _ContinueWatchingRail extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.fromLTRB(18, 8, 18, 8),
             child: Text(
-              'Continue watching',
+              '继续观看',
               style: TextStyle(
                 color: AppColors.textHi,
                 fontSize: 15,
@@ -878,7 +878,7 @@ class _RemoveButtonState extends State<_RemoveButton> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      'Remove',
+                      '移除',
                       style: TextStyle(
                         fontSize: _RemoveButton._labelFontSize,
                         fontWeight: FontWeight.w600,
@@ -1707,7 +1707,7 @@ class _MediaDetailsSheetState extends State<MediaDetailsSheet> {
                         OutlinedButton.icon(
                           onPressed: widget.onPlayFromStart,
                           icon: const Icon(Icons.replay_rounded),
-                          label: const Text('From start'),
+                          label: const Text('从头播放'),
                         ),
                     ],
                   ),
@@ -1804,7 +1804,7 @@ class _MetadataStatus extends StatelessWidget {
                 ),
               ),
               IconButton(
-                tooltip: 'Refresh metadata',
+                tooltip: '刷新元数据',
                 visualDensity: VisualDensity.compact,
                 onPressed: refreshing ? null : onRefresh,
                 icon: refreshing
@@ -1882,7 +1882,7 @@ class _SeriesBrowser extends StatelessWidget {
         final seasons = snapshot.data ?? const <MediaItem>[];
         if (seasons.isEmpty) {
           return const Text(
-            'No seasons found',
+            '未找到季',
             style: TextStyle(color: AppColors.textLo),
           );
         }
@@ -1953,7 +1953,7 @@ class _SeriesBrowser extends StatelessWidget {
                           return const Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              'No episodes found',
+                              '未找到剧集',
                               style: TextStyle(color: AppColors.textLo),
                             ),
                           );

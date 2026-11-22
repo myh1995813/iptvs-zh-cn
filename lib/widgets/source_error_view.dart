@@ -47,7 +47,7 @@ class SourceErrorView extends StatelessWidget {
             FilledButton(
               autofocus: true,
               onPressed: onRetry,
-              child: const Text('Try again'),
+              child: const Text('重试'),
             ),
           ],
         ),

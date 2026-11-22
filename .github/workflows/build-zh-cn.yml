@@ -1,0 +1,68 @@
+name: Build Chinese Android APK
+
+on:
+  push:
+    branches: [zh-cn]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chinese-android-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: 3.47.9
+
+jobs:
+  build:
+    name: Build Chinese Android APK (phone + Android TV)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+          # The Dolby Vision libmpv AAR is stored in Git LFS.
+          lfs: true
+
+      - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Cache Gradle
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('android/**/*.gradle*', 'android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: Resolve Flutter dependencies
+        run: flutter pub get
+
+      - name: Build development APK
+        run: |
+          flutter build apk --debug --flavor development \
+            --build-number ${{ github.run_number }} \
+            --dart-define=DISTRIBUTION_CHANNEL=development
+
+      - name: Verify development APK identity and updater permissions
+        run: ./tool/verify_android_distribution_manifest.sh build/app/outputs/flutter-apk/app-development-debug.apk development
+
+      - name: Upload APK
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: iptvs-zh-cn-android-apk
+          path: build/app/outputs/flutter-apk/app-development-debug.apk
+          retention-days: 14
+          if-no-files-found: error

@@ -302,7 +302,7 @@ class _SourceSettingsScreenState extends State<SourceSettingsScreen> {
       // list, so the guides take effect when the source is next built — the
       // same "applies on next load" contract the catch-up overrides above have.
       const SnackBar(
-        content: Text('EPG guides saved — applied on next reload'),
+        content: Text('EPG 指南已保存，将在下次重新加载时应用'),
       ),
     );
   }
@@ -340,7 +340,7 @@ class _SourceSettingsScreenState extends State<SourceSettingsScreen> {
     setState(() => _catchupError = null);
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(const SnackBar(content: Text('Catch-up overrides saved')));
+    ).showSnackBar(const SnackBar(content: Text('回看设置覆盖项已保存')));
   }
 
   /// The explicit override, or `null` for "unset" (platform default). Any
@@ -459,7 +459,7 @@ class _SourceSettingsScreenState extends State<SourceSettingsScreen> {
                               padding: const EdgeInsets.fromLTRB(2, 0, 2, 4),
                               child: TvTextField(
                                 controller: _searchController,
-                                hintText: 'Search categories',
+                                hintText: '搜索分类',
                                 autofocus: true,
                                 textInputAction: TextInputAction.search,
                                 prefixIcon: const Icon(Icons.search, size: 20),
@@ -499,7 +499,7 @@ class _SourceSettingsScreenState extends State<SourceSettingsScreen> {
                             const Padding(
                               padding: EdgeInsets.fromLTRB(6, 20, 6, 8),
                               child: Text(
-                                'Advanced catch-up',
+                                '高级回看设置',
                                 style: TextStyle(fontWeight: FontWeight.w700),
                               ),
                             ),
@@ -552,14 +552,14 @@ class _SourceSettingsScreenState extends State<SourceSettingsScreen> {
                                 child: FilledButton.icon(
                                   onPressed: _saveCatchupOverrides,
                                   icon: const Icon(Icons.save_outlined),
-                                  label: const Text('Save catch-up overrides'),
+                                  label: const Text('保存回看设置覆盖项'),
                                 ),
                               ),
                             ),
                             const Padding(
                               padding: EdgeInsets.fromLTRB(6, 20, 6, 8),
                               child: Text(
-                                'Playback buffer',
+                                '播放缓冲',
                                 style: TextStyle(fontWeight: FontWeight.w700),
                               ),
                             ),
@@ -578,7 +578,7 @@ class _SourceSettingsScreenState extends State<SourceSettingsScreen> {
                             const Padding(
                               padding: EdgeInsets.fromLTRB(6, 20, 6, 8),
                               child: Text(
-                                'EPG guides',
+                                'EPG 指南',
                                 style: TextStyle(fontWeight: FontWeight.w700),
                               ),
                             ),
@@ -662,12 +662,12 @@ class _SourceSettingsScreenState extends State<SourceSettingsScreen> {
                                         ? null
                                         : _addEpgGuide,
                                     icon: const Icon(Icons.add),
-                                    label: const Text('Add guide'),
+                                    label: const Text('添加指南'),
                                   ),
                                   FilledButton.icon(
                                     onPressed: _saveEpgGuides,
                                     icon: const Icon(Icons.save_outlined),
-                                    label: const Text('Save EPG guides'),
+                                    label: const Text('保存 EPG 指南'),
                                   ),
                                 ],
                               ),
@@ -683,7 +683,7 @@ class _SourceSettingsScreenState extends State<SourceSettingsScreen> {
                               const Padding(
                                 padding: EdgeInsets.fromLTRB(6, 20, 6, 8),
                                 child: Text(
-                                  'Source type',
+                                  '来源类型',
                                   style: TextStyle(fontWeight: FontWeight.w700),
                                 ),
                               ),
@@ -709,7 +709,7 @@ class _SourceSettingsScreenState extends State<SourceSettingsScreen> {
                               const Padding(
                                 padding: EdgeInsets.fromLTRB(6, 20, 6, 8),
                                 child: Text(
-                                  'Live stream format',
+                                  '直播流格式',
                                   style: TextStyle(fontWeight: FontWeight.w700),
                                 ),
                               ),
@@ -903,7 +903,7 @@ class _UpgradeToXtreamTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Upgrade to Xtream'),
+                  Text('升级为 Xtream'),
                   Text(
                     'Checks the panel first — nothing changes if it does not '
                     'answer.',
@@ -919,7 +919,7 @@ class _UpgradeToXtreamTile extends StatelessWidget {
               )
             else
               const Text(
-                'Upgrade',
+                '升级',
                 style: TextStyle(
                   color: AppColors.accent,
                   fontWeight: FontWeight.w600,
@@ -1018,7 +1018,7 @@ class _StreamFormatTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Stream format'),
+                  const Text('流格式'),
                   Text(
                     _hint,
                     style: const TextStyle(

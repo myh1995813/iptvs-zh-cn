@@ -464,10 +464,10 @@ class _HomeShellState extends State<HomeShell> with WidgetsBindingObserver {
       final unusable = _config;
       return Scaffold(
         appBar: AppBar(
-          title: const Text('IPTV Player'),
+          title: const Text('IPTV 播放器'),
           actions: [
             IconButton(
-              tooltip: 'Help & about',
+              tooltip: '帮助与关于',
               icon: const Icon(Icons.help_outline),
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => const LegalScreen())),
@@ -517,7 +517,7 @@ class _HomeShellState extends State<HomeShell> with WidgetsBindingObserver {
                     const SizedBox(height: 8),
                     TextButton(
                       onPressed: _useDemo,
-                      child: const Text('Use demo streams'),
+                      child: const Text('使用演示节目流'),
                     ),
                   ],
                 ),

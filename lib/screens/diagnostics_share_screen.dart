@@ -145,7 +145,7 @@ class _DiagnosticsShareScreenState extends State<DiagnosticsShareScreen>
     Clipboard.setData(ClipboardData(text: value));
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(const SnackBar(content: Text('Link copied')));
+    ).showSnackBar(const SnackBar(content: Text('链接已复制')));
   }
 
   Duration get _remaining {
@@ -158,7 +158,7 @@ class _DiagnosticsShareScreenState extends State<DiagnosticsShareScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Share on Wi-Fi')),
+      appBar: AppBar(title: const Text('通过 Wi-Fi 共享')),
       body: SafeArea(
         top: false,
         child: Center(
@@ -235,11 +235,11 @@ class _DiagnosticsShareScreenState extends State<DiagnosticsShareScreen>
           OutlinedButton.icon(
             onPressed: _stop,
             icon: const Icon(Icons.stop_circle_outlined, size: 18),
-            label: const Text('Stop sharing'),
+            label: const Text('停止共享'),
           ),
           OutlinedButton(
             onPressed: () => Navigator.of(context).maybePop(),
-            child: const Text('Done'),
+            child: const Text('完成'),
           ),
         ],
       ),
@@ -248,7 +248,7 @@ class _DiagnosticsShareScreenState extends State<DiagnosticsShareScreen>
 
   List<Widget> _stoppedBody() => [
     const Text(
-      'Sharing has stopped. The link no longer works.',
+      '共享已停止，链接不再有效。',
       style: TextStyle(color: AppColors.textHi, height: 1.4),
     ),
     const SizedBox(height: 20),
@@ -263,11 +263,11 @@ class _DiagnosticsShareScreenState extends State<DiagnosticsShareScreen>
           // A restart mints a **new** path token and a new port, so an address
           // someone wrote down during the last window is dead. That is the
           // point, and it is why this is "Restart" rather than "Resume".
-          label: const Text('Restart'),
+          label: const Text('重新开始'),
         ),
         OutlinedButton(
           onPressed: () => Navigator.of(context).maybePop(),
-          child: const Text('Done'),
+          child: const Text('完成'),
         ),
       ],
     ),
@@ -288,11 +288,11 @@ class _DiagnosticsShareScreenState extends State<DiagnosticsShareScreen>
           autofocus: true,
           onPressed: _start,
           icon: const Icon(Icons.refresh, size: 18),
-          label: const Text('Try again'),
+          label: const Text('重试'),
         ),
         OutlinedButton(
           onPressed: () => Navigator.of(context).maybePop(),
-          child: const Text('Done'),
+          child: const Text('完成'),
         ),
       ],
     ),
@@ -312,11 +312,11 @@ class _DiagnosticsShareScreenState extends State<DiagnosticsShareScreen>
           autofocus: true,
           onPressed: _start,
           icon: const Icon(Icons.refresh, size: 18),
-          label: const Text('Try again'),
+          label: const Text('重试'),
         ),
         OutlinedButton(
           onPressed: () => Navigator.of(context).maybePop(),
-          child: const Text('Done'),
+          child: const Text('完成'),
         ),
       ],
     ),
@@ -382,7 +382,7 @@ class _AddressCard extends StatelessWidget {
               autofocus: autofocus,
               onPressed: onCopy,
               icon: const Icon(Icons.copy_outlined, size: 18),
-              label: const Text('Copy link'),
+              label: const Text('复制链接'),
             ),
           ],
         ),

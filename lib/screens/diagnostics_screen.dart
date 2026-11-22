@@ -30,7 +30,7 @@ class DiagnosticsScreen extends StatelessWidget {
     final log = DiagnosticsLog.instance;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Diagnostics'),
+        title: const Text('诊断信息'),
         // `AppBarAction`, not bare `IconButton`s (CLAUDE.md): on the wide
         // layout — which is every television — these name themselves, because
         // a remote cannot hover a tooltip and "a clipboard" and "a bin" are
@@ -42,7 +42,7 @@ class DiagnosticsScreen extends StatelessWidget {
             // default focus is Cancel, and landing a D-pad on "send my log"
             // is the wrong first impression of a diagnostics screen.
             label: 'Send',
-            tooltip: 'Send diagnostics to the developer',
+            tooltip: '向开发者发送诊断信息',
             icon: Icons.send_outlined,
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
@@ -57,18 +57,18 @@ class DiagnosticsScreen extends StatelessWidget {
           AppBarAction(
             autofocus: true,
             label: 'Copy',
-            tooltip: 'Copy the whole log to the clipboard',
+            tooltip: '复制完整日志到剪贴板',
             icon: Icons.copy_outlined,
             onPressed: () {
               Clipboard.setData(ClipboardData(text: log.asText()));
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Diagnostics copied')),
+                const SnackBar(content: Text('诊断信息已复制')),
               );
             },
           ),
           AppBarAction(
             label: 'Clear',
-            tooltip: 'Discard the log on this device',
+            tooltip: '清除此设备上的日志',
             icon: Icons.delete_outline,
             onPressed: log.clear,
           ),
@@ -100,7 +100,7 @@ class DiagnosticsScreen extends StatelessWidget {
                   if (entries.isEmpty) {
                     return const Center(
                       child: Text(
-                        'No diagnostics yet',
+                        '暂无诊断信息',
                         style: TextStyle(color: AppColors.textLo),
                       ),
                     );
@@ -194,13 +194,13 @@ class _CacheStatsSectionState extends State<_CacheStatsSection> {
                   ),
                 ),
                 IconButton(
-                  tooltip: 'Refresh cache statistics',
+                  tooltip: '刷新缓存统计',
                   icon: const Icon(Icons.refresh, size: 20),
                   onPressed: _refresh,
                 ),
                 if (widget.onReingest != null)
                   IconButton(
-                    tooltip: 'Re-ingest source cache',
+                    tooltip: '重新导入来源缓存',
                     icon: const Icon(Icons.sync, size: 20),
                     onPressed: () async {
                       await widget.onReingest!();
@@ -255,7 +255,7 @@ class _ResourceCountersSectionState extends State<_ResourceCountersSection> {
               Row(
                 children: [
                   const Text(
-                    'Resource counters (debug)',
+                    '资源计数器（调试）',
                     style: TextStyle(
                       color: AppColors.textHi,
                       fontWeight: FontWeight.w600,
@@ -263,7 +263,7 @@ class _ResourceCountersSectionState extends State<_ResourceCountersSection> {
                   ),
                   const Spacer(),
                   IconButton(
-                    tooltip: 'Refresh counters',
+                    tooltip: '刷新计数器',
                     icon: const Icon(Icons.refresh, size: 20),
                     onPressed: _refresh,
                   ),
@@ -277,7 +277,7 @@ class _ResourceCountersSectionState extends State<_ResourceCountersSection> {
                     return const Padding(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       child: Text(
-                        'Loading…',
+                        '正在加载…',
                         style: TextStyle(color: AppColors.textLo, fontSize: 12),
                       ),
                     );
@@ -286,7 +286,7 @@ class _ResourceCountersSectionState extends State<_ResourceCountersSection> {
                     return const Padding(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       child: Text(
-                        'No counters reported',
+                        '没有可用的计数信息',
                         style: TextStyle(color: AppColors.textLo, fontSize: 12),
                       ),
                     );

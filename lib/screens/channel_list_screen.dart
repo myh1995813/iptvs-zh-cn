@@ -2259,7 +2259,7 @@ class _ChannelListScreenState extends State<ChannelListScreen>
     if (programmes.isEmpty) {
       messenger.showSnackBar(
         const SnackBar(
-          content: Text('No catch-up guide cached for this channel yet'),
+          content: Text('此频道尚未缓存回看节目单'),
         ),
       );
       return;
@@ -2904,7 +2904,7 @@ class _ChannelListScreenState extends State<ChannelListScreen>
         ..clearSnackBars()
         ..showSnackBar(
           const SnackBar(
-            content: Text('Press Back again to exit'),
+            content: Text('再按一次返回键退出'),
             duration: _exitConfirmWindow,
           ),
         );
@@ -2992,7 +2992,7 @@ class _ChannelListScreenState extends State<ChannelListScreen>
                     ),
                     AppBarAction(
                       label: 'Help',
-                      tooltip: 'Help & about',
+                      tooltip: '帮助与关于',
                       icon: Icons.help_outline,
                       onPressed: () async {
                         await _preview.stop();
@@ -3008,7 +3008,7 @@ class _ChannelListScreenState extends State<ChannelListScreen>
                       listenable: _dataListenable,
                       builder: (context, _) => AppBarAction(
                         label: 'Refresh',
-                        tooltip: 'Refresh from source',
+                        tooltip: '从来源刷新',
                         icon: Icons.refresh,
                         onPressed:
                             _live.loading ||
@@ -3126,7 +3126,7 @@ class _ChannelListScreenState extends State<ChannelListScreen>
                       )),
           actionControl: _tab == ContentKind.live
               ? ChannelToolbarIconButton(
-                  tooltip: 'TV guide',
+                  tooltip: '电视节目指南',
                   busy: false,
                   icon: Icons.calendar_view_day_rounded,
                   onPressed: _openEpgGrid,

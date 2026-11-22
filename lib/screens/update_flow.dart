@@ -47,7 +47,7 @@ Future<void> runUpdateCheck(
   } catch (e) {
     if (manual && context.mounted) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Update check failed: $e')));
+          .showSnackBar(SnackBar(content: Text('检查更新失败：$e')));
     }
     return;
   } finally {
@@ -60,7 +60,7 @@ Future<void> runUpdateCheck(
   if (release == null || !isUpdateAllowed(release, current)) {
     if (manual) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("You're on the latest version")),
+        const SnackBar(content: Text("当前已是最新版本")),
       );
     }
     return;
@@ -142,7 +142,7 @@ Future<bool> resumePendingUpdate(
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
-            'The cached update expired and must be downloaded again',
+            '缓存的更新已过期，必须重新下载',
           ),
         ),
       );
@@ -175,7 +175,7 @@ Future<bool> resumePendingUpdate(
     if (outcome == InstallOutcome.needsPermission && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Update ready — allow app installs to continue'),
+          content: Text('更新已就绪，请允许安装应用后继续'),
         ),
       );
     } else if (outcome == InstallOutcome.openedInBrowser) {
@@ -194,7 +194,7 @@ Future<bool?> showPendingUpdateDialog(BuildContext context, String version) =>
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor: AppColors.panelHi,
-        title: Text('Update ready to install — $version'),
+        title: Text('更新已就绪，可以安装：$version'),
         content: const Text(
           'The verified update is already downloaded. Continue installation '
           'without downloading it again?',
@@ -202,12 +202,12 @@ Future<bool?> showPendingUpdateDialog(BuildContext context, String version) =>
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Later'),
+            child: const Text('稍后'),
           ),
           FilledButton(
             autofocus: true,
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Install'),
+            child: const Text('安装'),
           ),
         ],
       ),
@@ -307,7 +307,7 @@ class _UpdateDialogState extends State<_UpdateDialog> {
       child: FocusTraversalGroup(
         child: AlertDialog(
           backgroundColor: AppColors.panelHi,
-          title: Text('Update available — ${widget.release.version}'),
+          title: Text('发现新版本：${widget.release.version}'),
           content: ConstrainedBox(
             // Grows with the screen so a longer (AI-generated) changelog shows
             // more before scrolling — but never taller than 60% of the screen,
@@ -371,11 +371,11 @@ class _UpdateDialogState extends State<_UpdateDialog> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, UpdateChoice.skip),
-              child: const Text('Skip this version'),
+              child: const Text('跳过此版本'),
             ),
             TextButton(
               onPressed: () => Navigator.pop(context, UpdateChoice.later),
-              child: const Text('Later'),
+              child: const Text('稍后'),
             ),
             FilledButton(
               // Autofocus so a TV remote's OK acts on the dialog immediately —
@@ -484,13 +484,13 @@ Future<void> _downloadAndInstall(
       case InstallOutcome.needsPermission:
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Update downloaded — installation can be resumed'),
+            content: Text('更新已下载，可以继续安装'),
           ),
         );
       case InstallOutcome.launched:
         if (Platform.isWindows || Platform.isLinux) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Updating — the app will restart…')),
+            const SnackBar(content: Text('正在更新，应用即将重启…')),
           );
           // Give the detached helper a beat to start, then quit so it can swap
           // the portable Windows folder or running Linux AppImage.
@@ -506,7 +506,7 @@ Future<void> _downloadAndInstall(
     closeDialog();
     if (context.mounted) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Update failed: $e')));
+          .showSnackBar(SnackBar(content: Text('更新失败：$e')));
     }
   } finally {
     _activeInstallFlows -= 1;
@@ -548,7 +548,7 @@ Future<_InstallPermissionChoice> _promptInstallPermission(
     context: context,
     builder: (_) => AlertDialog(
       backgroundColor: AppColors.panelHi,
-      title: const Text('Allow app installs'),
+      title: const Text('允许安装应用'),
       content: const Text(
         'To update from within the app, allow iptvs to install apps in the '
         'next screen, then tap Update again. You can also download it from the '
@@ -557,12 +557,12 @@ Future<_InstallPermissionChoice> _promptInstallPermission(
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context, false),
-          child: const Text('Open in browser'),
+          child: const Text('在浏览器中打开'),
         ),
         FilledButton(
           autofocus: true,
           onPressed: () => Navigator.pop(context, true),
-          child: const Text('Open settings'),
+          child: const Text('打开设置'),
         ),
       ],
     ),
@@ -587,7 +587,7 @@ class _ProgressDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.panelHi,
-      title: const Text('Downloading update'),
+      title: const Text('正在下载更新'),
       content: ValueListenableBuilder<double>(
         valueListenable: progress,
         builder: (context, value, _) {
@@ -610,7 +610,7 @@ class _ProgressDialog extends StatelessWidget {
         TextButton(
           autofocus: true,
           onPressed: onCancel,
-          child: const Text('Cancel'),
+          child: const Text('取消'),
         ),
       ],
     );
